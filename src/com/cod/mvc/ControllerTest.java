@@ -10,5 +10,5 @@ class ControllerTest {
 
     @org.junit.jupiter.api.Test
     void cambiarVelocidad() {
-    }
+    } //close issue #4
 }
