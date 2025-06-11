@@ -13,75 +13,34 @@ Esta clase seerá la encargada de controlar el exceso de velocidad
 * se *dispara* en todos los observadores el método `update()`
 
 ---
-## Diagrama de clases:
+
+En esta rama está añadido los eventos en la IU
+
+En vez de usar `swing`, usaremos [`javafx`](https://openjfx.io/)
+
+De esta manera vemos lo independiente que queda la interfaz gráfica, pudiendo migrarla sin tener que modificar el resto de la App
+
+Mantendremos una estructura básica de javafx
+
+El Model y el Controller no cambian
+
+---
+### Diagrama de clases:
 
 ```mermaid
 classDiagram
-   class View {
-      +muestraVelocidad()
-      +alarmaInfraccion()
-   }
-    
-      class Controller {
-          +cambiarVelocidad(String, Integer)
-          +crearCoche(String,String)
-      }
- 
-   
-      class ObserverLimite { +update(Coche coche) }
-   class Model {
-      ArrayList~Coche~: parking
-      +crearCoche(String, String, String)
-      +getCoche(String)
-      +cambiarVelocidad(String, Integer)
-      +getVelocidad(String)
-      +notifyObservers(Coche coche)
-   }
-   class Coche {
-      String: matricula
-      String: modelo
-      Integer: velocidad
-   }
-   
-   Model --* Coche
 
-```
 
 ---
 
-## Diagrama de Secuencia
+## Evento en el View
 
-Que ocurre cuando se cambia la velocidad
+Cuando ocurre un evento en la vista, el `controller` se tiene que enterar.
+Tenemos que tener en cuenta que en el MVC estricto, la vista no se comunica con el modelo.
+
+
 
 Observador (que vigile el limite de velocidad), entonces se lanza el `update()` 
 
 ```mermaid
 sequenceDiagram
-    participant View
-    box gray Controlador
-    participant Controller
-    participant observoLimite
-    end
-    participant Model
-
-    Controller->>Model: cambiarVelocidad()
-    activate Model
-    Model->>observoLimite: update()
-    deactivate Model
-    activate observoLimite
-    observoLimite->>View: alarmaInfraccion()
-    deactivate observoLimite
-    activate View
-    View->>View: sout()
-    deactivate View
-```
-
----
-## Pasos para la configuración
-
-1. Crear una clase para cada observador
-    * definir el método `update()` - ¿Qué hace este observador, que necesita?
-2. Implementar el método `notifyObservers()` en el modelo
-    * llama a los `update` de los observadores
-3. En el modelo, en cada c método que hay cambios:
-    * llamar a `notifyObservers()`
