@@ -2,7 +2,7 @@
 
 1. Lo primero que hice obviamente es hacer un fork al repositorio de Damian y hacer un clon en Idea. Tambien creé una carpeta en mi escritorio para guardarlo ahí.
 
-2. Lo segundo que hice fue crear una nueva rama llama *Readme* y crear un ```Readme.md``` en esa misma rama para luego hacerle commit y push para que funcionara correctamente, ya que si no el ```readme.md``` se mantendria en las demas ramas y no queremos eso.
+2. Lo segundo que hice fue crear una nueva rama llama *Readme* y crear un ```Readme.md``` (dentro de src) en esa misma rama para luego hacerle commit y push para que funcionara correctamente, ya que si no el ```readme.md``` se mantendria en las demas ramas y no queremos eso.
 
 3. Cree un Issue llamado Test 1 y 2 para cerrar los commits con close #2 y 4 respectivamente.
 
